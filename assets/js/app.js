@@ -6,19 +6,26 @@ const searchInput = document.getElementById("searchInput");
 
 // Load Trending on Start
 document.addEventListener("DOMContentLoaded", async () => {
+  trendingContainer.innerHTML = "<p>Loading...</p>";
+
   const trending = await getTrending();
   renderCards(trending, trendingContainer);
 });
 
 // Search
 searchInput.addEventListener("keyup", async (e) => {
-  if (e.key === "Enter") {
-    const results = await searchMovies(searchInput.value);
-    renderCards(results, trendingContainer);
-  }
+  if (e.key !== "Enter") return;
+
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  trendingContainer.innerHTML = "<p>Searching...</p>";
+
+  const results = await searchMovies(query);
+  renderCards(results, trendingContainer);
 });
 
-// Click Details
+// Redirect to details
 trendingContainer.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   if (!card) return;
