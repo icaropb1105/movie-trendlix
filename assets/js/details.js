@@ -23,38 +23,52 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     <div class="details-wrapper">
 
-      <img src="${poster}" class="poster">
+      <!-- COLUNA 1: POSTER -->
+      <div class="poster-col">
+        <img src="${poster}" class="poster">
+      </div>
 
-      <div class="details-text">
-
+      <!-- COLUNA 2: SINOPSE + INFO -->
+      <div class="overview-col">
         <p>${data.overview}</p>
 
         <div class="info-row">
           <p><strong>Rating:</strong> ⭐ ${data.vote_average.toFixed(1)}</p>
           <p><strong>Release:</strong> ${data.release_date || data.first_air_date}</p>
         </div>
+      </div>
 
+      <!-- COLUNA 3: CAST -->
+      <div class="cast-col">
         <h3>Cast</h3>
         <ul>
-          ${data.credits.cast.slice(0, 6).map(c => `<li>${c.name} (${c.character})</li>`).join("")}
+          ${data.credits.cast
+            .slice(0, 10)
+            .map(c => `<li>${c.name} (${c.character})</li>`)
+            .join("")}
         </ul>
+      </div>
 
+      <!-- COLUNA 4: WATCH OPTIONS -->
+      <div class="providers-col">
         <h3>Where to Watch</h3>
         <ul>${streamList}</ul>
-
         <button id="addWatchlist">Add to Watchlist</button>
-
       </div>
+
     </div>
   `;
 
-  // WATCHLIST
+  // ---------------------------
+  // ADD TO WATCHLIST
+  // ---------------------------
+
   document.getElementById("addWatchlist").onclick = () => {
     const item = {
       id,
       type,
       title: data.title || data.name,
-      poster: data.poster_path
+      poster: data.poster_path,
     };
 
     const list = JSON.parse(localStorage.getItem("watchlist")) || [];

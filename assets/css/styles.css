@@ -1,139 +1,257 @@
-body {
+/* =========================================================
+   RESET
+========================================================= */
+* {
   margin: 0;
-  background: #0d0d0d;
-  color: #eee;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* HEADER */
+/* =========================================================
+   BASE
+========================================================= */
+body {
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  color: #ffffff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 .header {
+  background: linear-gradient(135deg, #000, #141414);
   padding: 20px;
   text-align: center;
-  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-.header nav {
+.header h1 {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+nav {
   margin-top: 10px;
 }
 
-.header nav a {
+nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
-  opacity: 0.8;
-  transition: 0.2s;
+  margin: 0 12px;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: 0.3s;
 }
 
-.header nav a:hover {
+nav a:hover {
   opacity: 1;
+  text-shadow: 0 0 8px #00ccff;
 }
 
 .header input {
   margin-top: 15px;
-  padding: 10px;
-  width: 80%;
-  border-radius: 6px;
+  padding: 12px 14px;
+  width: min(500px, 90%);
+  border-radius: 10px;
   border: none;
+  background: #151515;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
 }
 
-/* GRID DAS LISTAS */
+/* =========================================================
+    CARDS
+========================================================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 22px;
+  padding: 25px;
 }
 
 .card {
-  background: #1a1a1a;
-  padding: 10px;
-  border-radius: 10px;
-  transition: transform .3s ease, box-shadow .3s ease;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 14px;
+  padding: 12px;
   cursor: pointer;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #000;
+  position: relative;
+  overflow: hidden;
+  transition: 0.35s;
 }
 
 .card img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
-/* BOTÃO BACK */
+.card h3 {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* =========================================================
+   DETAILS PAGE
+========================================================= */
 .back {
   display: inline-block;
-  padding: 10px 15px;
   margin: 20px;
   color: #fff;
   text-decoration: none;
-  font-size: 1.1rem;
-  opacity: 0.85;
+  font-weight: bold;
 }
-
-.back:hover {
-  opacity: 1;
-}
-
-/* --- DETAILS PAGE --- */
 
 #details-container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease both;
 }
 
-.details-wrapper {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.poster {
-  width: 270px;
-  border-radius: 14px;
-  box-shadow: 0 0 20px #000;
-}
-
-.details-text {
-  flex: 1;
-  min-width: 260px;
-  max-width: 700px;
-}
-
-h1 {
+#details-container h1 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
+  font-size: 2.3rem;
+}
+
+/* Wrapper  */
+.details-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+/* =========================================================
+   POSTER
+========================================================= */
+.poster {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+}
+
+/* =========================================================
+   TEXTS
+========================================================= */
+#details-container p {
+  opacity: 0.9;
+  line-height: 1.7;
+  margin-bottom: 12px;
 }
 
 .info-row {
   display: flex;
-  gap: 40px;
-  margin: 20px 0;
-  font-size: 1rem;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
-ul {
-  padding-left: 20px;
-  line-height: 1.6;
+/* =========================================================
+   LISTS (cast e providers)
+========================================================= */
+#details-container ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
+#details-container li {
+  background: #1c1c1c;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: 0.3s;
+}
+
+/* =========================================================
+   BOTÃO WATCHLIST
+========================================================= */
 #addWatchlist {
-  background: #ffcc00;
+  margin-top: 25px;
+  background: linear-gradient(135deg, #00ccff, #0077ff);
   border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
+  color: #000;
   font-weight: bold;
+  padding: 14px 30px;
+  border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: 25px;
-  transition: 0.2s;
 }
 
 #addWatchlist:hover {
-  background: #e6b800;
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   WATCHLIST REMOVE BUTTON
+========================================================= */
+.remove-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid #ff5555;
+  color: #ff5555;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 1150px) {
+  .details-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr 1fr 260px;
+    grid-template-areas:
+      "poster overview cast providers"
+      "poster overview cast providers";
+    gap: 40px;
+  }
+
+  .poster-col { grid-area: poster; }
+
+  .overview-col {
+    grid-area: overview;
+    max-width: 100%;
+  }
+
+  .overview-col p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .cast-col {
+    grid-area: cast;
+  }
+
+  .providers-col {
+    grid-area: providers;
+  }
+
+  .cast-col ul,
+  .providers-col ul {
+    flex-direction: column;
+  }
+
+  #addWatchlist {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
